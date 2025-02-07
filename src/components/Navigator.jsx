@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Input, Select, Button, Space } from "antd";
+import { Input, Select, Space } from "antd";
+import LoginAvatar from "./LoginAvatar";
 
-function Navigator() {
+function Navigator(props) {
 	return (
 		<div className="headerContainer">
 			<div className="logoContainer">
@@ -58,12 +59,7 @@ function Navigator() {
 				</Space.Compact>
 			</div>
 			<div className="loginBtnContainer">
-				<Button
-					type="primary"
-					size="large"
-				>
-					注册/登录
-				</Button>
+				<LoginAvatar loginHandler={props.loginHandler}/>
 			</div>
 		</div>
 	);
