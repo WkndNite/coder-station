@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, List, Popover, Avatar } from "antd";
+import { Button, List, Popover, Avatar, Image } from "antd";
 import styles from "../css/LoginAvatar.module.css";
 
 export default function LoginAvatar(props) {
@@ -19,8 +19,9 @@ export default function LoginAvatar(props) {
 			content={popOverContent}
 			trigger="hover"
 		>
+		
 			<div className={styles.avatarContainer}>
-				<Avatar src={url} />
+				<Avatar src={<Image src={userInfo?.avatar} />} />
 			</div>
 		</Popover>
 	);
@@ -28,7 +29,7 @@ export default function LoginAvatar(props) {
 		<Button
 			type="primary"
 			size="large"
-      onClick={props.loginHandler}
+			onClick={props.loginHandler}
 		>
 			注册/登录
 		</Button>

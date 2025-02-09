@@ -1,14 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Modal, Radio, Form, Button, Row, Col, Input, Checkbox } from "antd";
 import styles from "../css/LoginForm.module.css";
-import { getCaptcha } from "../api/user";
+import { getCaptcha, register, userHasExist } from "../api/user";
+import { message } from "antd";
+import { useDispatch } from "react-redux";
+import { changeLoginState, initUserInfo } from "../redux/userSlice";
 
 const LoginForm = props => {
 	useEffect(() => {
 		captchaClickHandler();
 	}, [props.isShow]);
 
+	// 将输入框对应的状态更新抽离为一个通用函数
+	const updateInfo = (info, value, key, setInfo) => {
+		setInfo({ ...info, [key]: value });
+	};
+
 	const [value, setValue] = useState("login");
+	const [captcha, setCaptcha] = useState("");
 	const loginFormRef = useRef(null);
 	const [loginInfo, setLoginInfo] = useState({
 		loginId: "",
@@ -22,21 +31,50 @@ const LoginForm = props => {
 		nickname: "",
 		captcha: "",
 	});
-	const [captcha, setCaptcha] = useState("");
+
+	const dispatch = useDispatch();
+
+	const checkLoginIdExists = async () => {
+		if (registerInfo.loginId) {
+			const res = await userHasExist(registerInfo.loginId);
+			return res.data ? Promise.reject("用户已存在") : Promise.resolve();
+		}
+	};
+
+	const captchaClickHandler = async () => {
+		const res = await getCaptcha();
+		setCaptcha(res);
+	};
+
+	function cancelHandler() {
+		setRegisterInfo({
+			loginId: "",
+			nickname: "",
+			captcha: "",
+		});
+		setLoginInfo({
+			loginId: "",
+			loginPwd: "",
+			captcha: "",
+			remember: false,
+		});
+		props.closeModal();
+	}
+
+	const registerHandler = async () => {
+		const res = await register(registerInfo);
+		if(res.data){
+			message.success("用户注册成功，默认密码为123456，请尽快修改密码");
+			dispatch(initUserInfo(res.data));
+			dispatch(changeLoginState(true));
+			cancelHandler();
+		}else{
+			message.warning(res.msg);
+		}
+	};
 	const loginHandler = () => {
 		console.log(loginInfo);
 	};
-
-	const updateInfo = (info, value, key, setInfo) => {
-		setInfo({ ...info, [key]: value });
-	};
-	const captchaClickHandler = async () => {
-		const res = await getCaptcha();
-		console.log(res);
-		setCaptcha(res);
-	};
-	const registerHandler = () => {};
-
 	const handleOk = () => {};
 
 	const loginContainer = (
@@ -151,7 +189,7 @@ const LoginForm = props => {
 			onFinish={registerHandler}
 		>
 			<Form.Item
-				label="登录账号"
+				label="注册账号"
 				name="loginId"
 				rules={[
 					{
@@ -159,7 +197,7 @@ const LoginForm = props => {
 						message: "请输入账号，仅此项为必填项",
 					},
 					// 验证用户是否已经存在
-					// { validator: checkLoginIdIsExist },
+					{ validator: checkLoginIdExists },
 				]}
 				validateTrigger="onBlur"
 			>
@@ -224,7 +262,7 @@ const LoginForm = props => {
 				</Button>
 				<Button
 					type="primary"
-					htmlType="submit"
+					htmlType="reset"
 				>
 					重置
 				</Button>
@@ -242,7 +280,10 @@ const LoginForm = props => {
 			>
 				<Radio.Group
 					value={value}
-					onChange={e => {setValue(e.target.value);captchaClickHandler()}}
+					onChange={e => {
+						setValue(e.target.value);
+						captchaClickHandler();
+					}}
 					className={styles.radioGroup}
 					buttonStyle="solid"
 				>
