@@ -21,7 +21,7 @@ export default function LoginAvatar(props) {
 		>
 		
 			<div className={styles.avatarContainer}>
-				<Avatar src={<Image src={userInfo?.avatar} />} />
+				<Avatar src={<Image src={userInfo?.avatar} preview={false} />} />
 			</div>
 		</Popover>
 	);
