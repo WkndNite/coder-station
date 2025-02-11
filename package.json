@@ -40,6 +40,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
+    "prettier": "^3.5.0",
     "prompts": "^2.4.2",
     "react": "^19.0.0",
     "react-app-polyfill": "^3.0.0",
@@ -51,7 +52,6 @@
     "react-router-dom": "^7.1.4",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
-    "rimraf": "^6.0.1",
     "sass-loader": "^12.3.0",
     "semver": "^7.3.5",
     "source-map-loader": "^3.0.0",
@@ -66,13 +66,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "test": "node scripts/test.js",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "browserslist": {
     "production": [

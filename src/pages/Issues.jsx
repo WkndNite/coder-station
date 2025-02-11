@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function Issues(props) {
-    return (
-        <div>
-            问答
-        </div>
-    );
+  return <div>问答</div>;
 }
 
 export default Issues;
