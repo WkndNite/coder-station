@@ -4,7 +4,6 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import zhCN from "antd/lib/locale/zh_CN";
 import { ConfigProvider } from "antd";
-import "./css/reset.css";
 import "./index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
