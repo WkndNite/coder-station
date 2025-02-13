@@ -44,3 +44,10 @@ export function getInfo() {
     method: "GET",
   });
 }
+
+export function getUserByPointRank() {
+  return request({
+    url: "/api/user/pointsrank",
+    method: "GET",
+  });
+}

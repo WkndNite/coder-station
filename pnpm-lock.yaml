@@ -53,6 +53,9 @@ importers:
       case-sensitive-paths-webpack-plugin:
         specifier: ^2.4.0
         version: 2.4.0
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       cra-template:
         specifier: 1.2.0
         version: 1.2.0
