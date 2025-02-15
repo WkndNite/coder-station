@@ -333,6 +333,9 @@ const LoginForm = (props) => {
           }}
           className={styles.radioGroup}
           buttonStyle="solid"
+          style={{
+            marginBottom: "20px",
+          }}
         >
           <Radio.Button className={styles.radioButton} value="login">
             登录
