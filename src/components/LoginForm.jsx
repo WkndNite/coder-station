@@ -85,7 +85,7 @@ const LoginForm = (props) => {
     if (res.data) {
       if (!res.data.data) {
         message.error("账号或密码不正确");
-      } else if (!res.data.enabled) {
+      } else if (res.data.enabled===false) {
         message.error("账号已被禁用");
       } else {
         message.success("登录成功");
