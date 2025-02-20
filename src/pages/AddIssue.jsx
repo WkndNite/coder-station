@@ -26,12 +26,12 @@ export default function AddIssue() {
     }
   }, []);
 
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   function addHandler() {
     const editorContent = editorRef.current.getInstance().getHTML();
     addIssue({ ...issueInfo, issueContent: editorContent });
-    navigator("/");
+    navigate("/");
     message.success("问题已提交，审核通过后展示！");
   }
   function updateInfo(newContent, key) {

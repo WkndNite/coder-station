@@ -81,7 +81,6 @@ const LoginForm = (props) => {
   };
   const loginHandler = async () => {
     const res = await login(loginInfo);
-    console.log(res);
     if (res.data) {
       if (!res.data.data) {
         message.error("账号或密码不正确");
