@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getTypeList } from "../redux/typeSlice";
 import { Tag } from "antd";
 import { getUserById } from "../api/user";
+import { useNavigate } from "react-router";
 
 export default function IssueItem(props) {
   const { typeList } = useSelector((state) => state.type);
@@ -17,7 +18,6 @@ export default function IssueItem(props) {
     async function fetchUserData() {
       const { data } = await getUserById(props.issueInfo.userId);
       setUserInfo(data);
-      console.log(data);
     }
     fetchUserData();
   }, []);
@@ -36,6 +36,8 @@ export default function IssueItem(props) {
 
   const [userInfo, setUserInfo] = useState([]);
 
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.issueNum}>
@@ -47,7 +49,9 @@ export default function IssueItem(props) {
         <div>浏览</div>
       </div>
       <div className={styles.issueContainer}>
-        <div className={styles.top}>{props.issueInfo.issueTitle}</div>
+        <div className={styles.top} onClick={()=>{
+          navigate(`/issues/${props.issueInfo._id}`)
+        }}>{props.issueInfo.issueTitle}</div>
         <div className={styles.bottom}>
           <div className={styles.left}>
             <Tag color={colorArr[typeList.indexOf(type) % colorArr.length]}>

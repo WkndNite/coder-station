@@ -17,3 +17,10 @@ export function addIssue(newIssue){
     data:newIssue
   })
 }
+
+export function getIssueById(issueId){
+  return request({
+    url:`/api/issue/${issueId}`,
+    method:'GET'
+  })
+}
