@@ -51,3 +51,11 @@ export function formatDate(timestamp, part) {
   }
   return str;
 }
+
+export function typeOptionCreator(Select, typeList) {
+  return typeList.map((item) => (
+    <Select.Option key={item._id} value={item._id}>
+      {item.typeName}
+    </Select.Option>
+  ));
+}
