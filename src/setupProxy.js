@@ -22,7 +22,6 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: "http://localhost:7001/static",
       changeOrigin: true,
-      ws: true,
     }),
   );
 };
