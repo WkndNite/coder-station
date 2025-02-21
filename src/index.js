@@ -7,7 +7,7 @@ import { ConfigProvider } from "antd";
 import "./index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import "@ant-design/v5-patch-for-react-19";
+import 'antd/dist/antd.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
