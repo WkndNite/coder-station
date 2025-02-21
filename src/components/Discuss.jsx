@@ -33,11 +33,15 @@ export default function Discuss(props) {
         data = result.data;
       } else if (props.commentType === 2) {
       }
-      data.data.forEach(async (item) => {
-        const response = await getUserById(item.userId);
-        item.userInfo = response.data;
-      });
-      setCommentList(data.data);
+      const updatedComments = await Promise.all(
+        data.data.map(async (item) => {
+          const response = await getUserById(item.userId);
+          item.userInfo = response.data
+          return item;
+        })
+      );
+
+      setCommentList(updatedComments);
       setPageInfo({
         currentPage: data.currentPage,
         eachPage: data.eachPage,
@@ -81,7 +85,8 @@ export default function Discuss(props) {
           renderItem={(item) => (
             <li>
               <Comment
-                author={item.userInfo?.nickname}
+                author={item.userInfo.nickname}
+                avatar={item.userInfo.avatar}
                 content={
                   <div
                     dangerouslySetInnerHTML={{ __html: item.commentContent }}
