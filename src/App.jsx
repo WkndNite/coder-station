@@ -4,7 +4,7 @@ import CopyrightFooter from "./components/CopyrightFooter";
 import { Layout } from "antd";
 
 import "./css/App.css";
-import RouterConfig from "./router/index.jsx";
+import RouteBefore from "./router/RouteBefore.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import { getInfo, getUserById } from "./api/user.js";
 import { useDispatch } from "react-redux";
@@ -51,7 +51,7 @@ const App = () => {
           <Navigator loginHandler={loginHandler} />
         </Header>
         <Content className="content">
-          <RouterConfig />
+          <RouteBefore />
         </Content>
         <Footer className="footer">
           <CopyrightFooter />
