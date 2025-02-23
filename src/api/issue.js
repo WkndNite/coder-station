@@ -24,3 +24,11 @@ export function getIssueById(issueId){
     method:'GET'
   })
 }
+
+export function updateIssue(issueId,newIssueInfo){
+  return request({
+    url:`/api/issue/${issueId}`,
+    method:'PATCH',
+    data:newIssueInfo
+  })
+}

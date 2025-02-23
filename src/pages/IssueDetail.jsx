@@ -43,8 +43,11 @@ export default function IssueDetail() {
               ></div>
             </div>
           </div>
-          <Discuss commentType={1} targetId={issueInfo._id} />
-
+          <Discuss
+            commentType={1}
+            targetId={issueInfo._id}
+            issueInfo={issueInfo}
+          />
         </div>
         <div className={styles.rightSide}>
           <div

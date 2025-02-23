@@ -9,3 +9,11 @@ export function getIssueCommentsById(issueId,params) {
     }
   });
 }
+
+export function addIssueComment(newComment){
+  return request({
+    url: "/api/comment",
+    method: "POST",
+    data: newComment
+  });
+}

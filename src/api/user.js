@@ -51,3 +51,11 @@ export function getUserByPointRank() {
     method: "GET",
   });
 }
+
+export function editUser(userId, newUserInfo) {
+  return request({
+    url: `/api/user/${userId}`,
+    method: "PATCH",
+    data: newUserInfo,
+  });
+}
