@@ -5,6 +5,8 @@ export default function PageHeader(props) {
   return (
     <div className={styles.row}>
       <div className={styles.pageHeader}>{props.title}</div>
+      {props.children}
     </div>
+
   );
 }

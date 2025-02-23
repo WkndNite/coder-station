@@ -19,10 +19,10 @@ export default function AddIssue() {
     userId: useSelector((state) => state.user.userInfo._id),
   });
   const { typeList } = useSelector((state) => state.type);
-  const dispatcher = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!typeList.length) {
-      dispatcher(getTypeList());
+      dispatch(getTypeList());
     }
   }, []);
 

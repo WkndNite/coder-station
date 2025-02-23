@@ -10,8 +10,14 @@ export const typeSlice = createSlice({
   name: "type",
   initialState: {
     typeList: [],
+    issueTypeId: "all",
+    bookTypeId: "all",
   },
-  reducers: {},
+  reducers: {
+    updateIssueTypeId(state, { payload }) {
+      state.issueTypeId = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getTypeList.fulfilled, (state, action) => {
       state.typeList = action.payload;
@@ -20,4 +26,4 @@ export const typeSlice = createSlice({
 });
 
 export default typeSlice.reducer;
-export const {} = typeSlice.actions;
+export const { updateIssueTypeId } = typeSlice.actions;

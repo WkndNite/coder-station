@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Input, Select, Space } from "antd";
 import LoginAvatar from "./LoginAvatar";
+import { useNavigate } from "react-router-dom";
 
 function Navigator(props) {
+  const navigate = useNavigate();
+  const [searchOption, setSearchOption] = useState("issue");
+
+  function onSearch(value) {
+    if (value) {
+      navigate("/searchPage", {
+        state: {
+          value,
+          searchOption
+        },
+      });
+    } else {
+      navigate("/");
+    }
+  }
+
+  function onChange(value) {
+    setSearchOption(value);
+  }
+
   return (
     <div className="headerContainer">
       <div className="logoContainer">
@@ -30,7 +51,12 @@ function Navigator(props) {
       </nav>
       <div className="searchContainer">
         <Space.Compact>
-          <Select defaultValue="issue" size="large" style={{ width: "30%" }}>
+          <Select
+            defaultValue="issue"
+            size="large"
+            style={{ width: "30%" }}
+            onChange={onChange}
+          >
             <Select.Option value="issue">问答</Select.Option>
             <Select.Option value="book">书籍</Select.Option>
           </Select>
@@ -42,6 +68,7 @@ function Navigator(props) {
             style={{
               width: "80%",
             }}
+            onSearch={onSearch}
           />
         </Space.Compact>
       </div>

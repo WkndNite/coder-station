@@ -10,10 +10,10 @@ import { useNavigate } from "react-router";
 
 export default function IssueItem(props) {
   const { typeList } = useSelector((state) => state.type);
-  const dispatcher = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!typeList.length) {
-      dispatcher(getTypeList());
+      dispatch(getTypeList());
     }
     async function fetchUserData() {
       const { data } = await getUserById(props.issueInfo.userId);
