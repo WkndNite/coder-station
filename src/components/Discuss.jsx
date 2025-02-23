@@ -24,7 +24,7 @@ export default function Discuss(props) {
   const avatarTag = isLogin ? (
     <Avatar src={userInfo.avatar} />
   ) : (
-    <Avatar src={<UserOutlined />} />
+    <Avatar icon={<UserOutlined />} />
   );
 
   const editorRef = useRef(null);
