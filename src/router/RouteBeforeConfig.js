@@ -1,38 +1,38 @@
 export default [
   {
-    path: "/issues",
+    path: '/issues',
     needLogin: false,
   },
   {
-    path: "/issues/:issueId",
+    path: '/issues/:issueId',
     needLogin: false,
   },
   {
-    path: "/addIssue",
+    path: '/addIssue',
     needLogin: true,
   },
   {
-    path: "/books",
+    path: '/books',
     needLogin: false,
   },
   {
-    path: "/books/:bookId",
+    path: '/books/:bookId',
     needLogin: false,
   },
   {
-    path: "/interviews",
+    path: '/interviews',
     needLogin: false,
   },
   {
-    path: "/searchPage",
+    path: '/searchPage',
     needLogin: false,
   },
   {
-    path: "/personal",
+    path: '/personal',
     needLogin: true,
   },
   {
-    path: "/",
+    path: '/',
     needLogin: false,
   },
 ];

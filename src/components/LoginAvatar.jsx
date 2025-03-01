@@ -1,10 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Button, List, Popover, Avatar, Image } from "antd";
-import styles from "../css/LoginAvatar.module.css";
-import { useDispatch } from "react-redux";
-import { changeLoginState, clearUserInfo } from "../redux/userSlice";
-import { useNavigate } from "react-router";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Button, List, Popover, Avatar, Image } from 'antd';
+import styles from '../css/LoginAvatar.module.css';
+import { useDispatch } from 'react-redux';
+import { changeLoginState, clearUserInfo } from '../redux/userSlice';
+import { useNavigate } from 'react-router';
 
 export default function LoginAvatar(props) {
   const { isLogin, userInfo } = useSelector((state) => state.user);
@@ -13,22 +13,23 @@ export default function LoginAvatar(props) {
   const navigate = useNavigate();
 
   const handleMenuClick = (item) => {
-    if (item === "个人中心") {
-      console.log("个人中心");
-    } else if (item === "退出登录") {
-      localStorage.removeItem("userToken");
+    if (item === '个人中心') {
+      navigate('/personal');
+      console.log('个人中心');
+    } else if (item === '退出登录') {
+      localStorage.removeItem('userToken');
       dispatch(clearUserInfo());
       dispatch(changeLoginState(false));
-      navigate("/");
+      navigate('/');
     }
   };
 
   const popOverContent = (
     <List
-      dataSource={["个人中心", "退出登录"]}
+      dataSource={['个人中心', '退出登录']}
       renderItem={(item) => (
         <List.Item
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => handleMenuClick(item)}
         >
           {item}
@@ -38,14 +39,28 @@ export default function LoginAvatar(props) {
   );
 
   const loginJSX = (
-    <Popover content={popOverContent} trigger="hover">
+    <Popover
+      content={popOverContent}
+      trigger="hover"
+    >
       <div className={styles.avatarContainer}>
-        <Avatar src={<Image src={userInfo?.avatar} preview={false} />} />
+        <Avatar
+          src={
+            <Image
+              src={userInfo?.avatar}
+              preview={false}
+            />
+          }
+        />
       </div>
     </Popover>
   );
   const unLoginJSX = (
-    <Button type="primary" size="large" onClick={props.loginHandler}>
+    <Button
+      type="primary"
+      size="large"
+      onClick={props.loginHandler}
+    >
       注册/登录
     </Button>
   );

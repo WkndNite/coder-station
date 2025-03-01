@@ -1,17 +1,17 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getTypes } from "../api/type";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getTypes } from '../api/type';
 
-export const getTypeList = createAsyncThunk("type/getTypeList", async () => {
+export const getTypeList = createAsyncThunk('type/getTypeList', async () => {
   const response = await getTypes();
   return response.data;
 });
 
 export const typeSlice = createSlice({
-  name: "type",
+  name: 'type',
   initialState: {
     typeList: [],
-    issueTypeId: "all",
-    bookTypeId: "all",
+    issueTypeId: 'all',
+    bookTypeId: 'all',
   },
   reducers: {
     updateIssueTypeId(state, { payload }) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Avatar,
   Button,
@@ -8,16 +8,16 @@ import {
   message,
   Tooltip,
   Pagination,
-} from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons";
-import { Editor } from "@toast-ui/react-editor";
-import { addIssueComment, getIssueCommentsById } from "../api/comment";
-import { getUserById } from "../api/user";
-import { formatDate } from "../utils/tools";
-import { updateIssue } from "../api/issue";
-import { updateUserInfoAsync } from "../redux/userSlice";
-import styles from "../css/Discuss.module.css"
+} from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserOutlined } from '@ant-design/icons';
+import { Editor } from '@toast-ui/react-editor';
+import { addIssueComment, getIssueCommentsById } from '../api/comment';
+import { getUserById } from '../api/user';
+import { formatDate } from '../utils/tools';
+import { updateIssue } from '../api/issue';
+import { updateUserInfoAsync } from '../redux/userSlice';
+import styles from '../css/Discuss.module.css';
 
 export default function Discuss(props) {
   const { isLogin, userInfo } = useSelector((state) => state.user);
@@ -39,14 +39,14 @@ export default function Discuss(props) {
     let newComment = null;
     if (props.commentType === 1) {
       newComment = editorRef.current.getInstance().getHTML();
-      if (newComment === "<p><br></p>") {
-        newComment = "";
+      if (newComment === '<p><br></p>') {
+        newComment = '';
       }
     } else if (props.commentType === 2) {
     }
 
     if (!newComment) {
-      message.warning("评论内容不能为空");
+      message.warning('评论内容不能为空');
       return;
     }
 
@@ -59,8 +59,8 @@ export default function Discuss(props) {
       issueId: props.targetId,
     });
     setRefresh(!refresh);
-    editorRef.current.getInstance().setHTML("");
-    message.success("评论成功");
+    editorRef.current.getInstance().setHTML('');
+    message.success('评论成功');
     updateIssue(props.targetId, {
       commentNumber: props.issueInfo
         ? ++props.issueInfo.commentNumber
@@ -73,7 +73,7 @@ export default function Discuss(props) {
         newInfo: {
           points: userInfo.points + 4,
         },
-      })
+      }),
     );
   };
 
@@ -95,7 +95,7 @@ export default function Discuss(props) {
           const response = await getUserById(item.userId);
           item.userInfo = response.data;
           return item;
-        })
+        }),
       );
 
       setCommentList(updatedComments);
@@ -128,7 +128,10 @@ export default function Discuss(props) {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" onClick={onSubmit}>
+              <Button
+                type="primary"
+                onClick={onSubmit}
+              >
                 添加评论
               </Button>
             </Form.Item>
@@ -152,7 +155,7 @@ export default function Discuss(props) {
                 }
                 datetime={
                   <Tooltip title={formatDate(item.commentDate)}>
-                    <span>{formatDate(item.commentDate, "year")}</span>
+                    <span>{formatDate(item.commentDate, 'year')}</span>
                   </Tooltip>
                 }
               />
@@ -173,9 +176,9 @@ export default function Discuss(props) {
       ) : (
         <div
           style={{
-            fontWeight: "200",
-            textAlign: "center",
-            margin: "50px",
+            fontWeight: '200',
+            textAlign: 'center',
+            margin: '50px',
           }}
         >
           暂无评论

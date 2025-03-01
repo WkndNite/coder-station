@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "../css/RecommendItem.module.css";
+import React from 'react';
+import styles from '../css/RecommendItem.module.css';
 
 export default function RecommendItem(props) {
   return (

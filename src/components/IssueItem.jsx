@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import styles from "../css/IssueItem.module.css";
-import { formatDate } from "../utils/tools";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getTypeList } from "../redux/typeSlice";
-import { Tag } from "antd";
-import { getUserById } from "../api/user";
-import { useNavigate } from "react-router";
+import React, { useState, useEffect } from 'react';
+import styles from '../css/IssueItem.module.css';
+import { formatDate } from '../utils/tools';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getTypeList } from '../redux/typeSlice';
+import { Tag } from 'antd';
+import { getUserById } from '../api/user';
+import { useNavigate } from 'react-router';
 
 export default function IssueItem(props) {
   const { typeList } = useSelector((state) => state.type);
@@ -23,14 +23,14 @@ export default function IssueItem(props) {
   }, []);
 
   const colorArr = [
-    "#108ee9",
-    "#2db7f5",
-    "#ff4500",
-    "#008000",
-    "#87d068",
-    "#0000ff",
-    "#ff0000",
-    "#800080",
+    '#108ee9',
+    '#2db7f5',
+    '#ff4500',
+    '#008000',
+    '#87d068',
+    '#0000ff',
+    '#ff0000',
+    '#800080',
   ];
   const type = typeList.find((item) => item._id === props.issueInfo.typeId);
 
@@ -49,9 +49,14 @@ export default function IssueItem(props) {
         <div>浏览</div>
       </div>
       <div className={styles.issueContainer}>
-        <div className={styles.top} onClick={()=>{
-          navigate(`/issues/${props.issueInfo._id}`)
-        }}>{props.issueInfo.issueTitle}</div>
+        <div
+          className={styles.top}
+          onClick={() => {
+            navigate(`/issues/${props.issueInfo._id}`);
+          }}
+        >
+          {props.issueInfo.issueTitle}
+        </div>
         <div className={styles.bottom}>
           <div className={styles.left}>
             <Tag color={colorArr[typeList.indexOf(type) % colorArr.length]}>
@@ -60,7 +65,7 @@ export default function IssueItem(props) {
           </div>
           <div className={styles.right}>
             <Tag color="volcano">{userInfo.nickname}</Tag>
-            <span>{formatDate(props.issueInfo.issueDate, "year")}</span>
+            <span>{formatDate(props.issueInfo.issueDate, 'year')}</span>
           </div>
         </div>
       </div>

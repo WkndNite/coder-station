@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "../css/PageHeader.module.css";
+import React from 'react';
+import styles from '../css/PageHeader.module.css';
 
 export default function PageHeader(props) {
   return (
@@ -7,6 +7,5 @@ export default function PageHeader(props) {
       <div className={styles.pageHeader}>{props.title}</div>
       {props.children}
     </div>
-
   );
 }

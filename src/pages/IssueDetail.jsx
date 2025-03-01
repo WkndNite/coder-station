@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { getIssueById } from "../api/issue";
-import styles from "../css/IssueDetail.module.css";
-import PageHeader from "../components/PageHeader";
-import Recommend from "../components/Recommend";
-import ScoreRank from "../components/ScoreRank";
-import { Avatar } from "antd";
-import { getUserById } from "../api/user";
-import { formatDate } from "../utils/tools";
-import Discuss from "../components/Discuss";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getIssueById } from '../api/issue';
+import styles from '../css/IssueDetail.module.css';
+import PageHeader from '../components/PageHeader';
+import Recommend from '../components/Recommend';
+import ScoreRank from '../components/ScoreRank';
+import { Avatar } from 'antd';
+import { getUserById } from '../api/user';
+import { formatDate } from '../utils/tools';
+import Discuss from '../components/Discuss';
 
 export default function IssueDetail() {
   const { issueId } = useParams();
@@ -33,7 +33,10 @@ export default function IssueDetail() {
           <div className={styles.question}>
             <h1>{issueInfo.issueTitle}</h1>
             <div className={styles.questioner}>
-              <Avatar size="small" src={issueUser.avatar} />
+              <Avatar
+                size="small"
+                src={issueUser.avatar}
+              />
               <span className={styles.user}>{issueUser.nickname}</span>
               <span>发布于：{formatDate(issueInfo.issueDate)}</span>
             </div>
@@ -52,14 +55,14 @@ export default function IssueDetail() {
         <div className={styles.rightSide}>
           <div
             style={{
-              marginBottom: "20px",
+              marginBottom: '20px',
             }}
           >
             <Recommend />
           </div>
           <div
             style={{
-              marginBottom: "20px",
+              marginBottom: '20px',
             }}
           >
             <ScoreRank />

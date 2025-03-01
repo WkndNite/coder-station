@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
-import typeReducer from "./typeSlice";
-import interviewReducer from "./interviewSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './userSlice';
+import typeReducer from './typeSlice';
+import interviewReducer from './interviewSlice';
 
 export default configureStore({
   reducer: {

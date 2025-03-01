@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Navigator from "./components/Navigator";
-import CopyrightFooter from "./components/CopyrightFooter";
-import { Layout } from "antd";
+import React, { useEffect, useState } from 'react';
+import Navigator from './components/Navigator';
+import CopyrightFooter from './components/CopyrightFooter';
+import { Layout } from 'antd';
 
-import "./css/App.css";
-import RouteBefore from "./router/RouteBefore.jsx";
-import LoginForm from "./components/LoginForm.jsx";
-import { getInfo, getUserById } from "./api/user.js";
-import { useDispatch } from "react-redux";
-import { changeLoginState, initUserInfo } from "./redux/userSlice.js";
-import { message } from "antd";
+import './css/App.css';
+import RouteBefore from './router/RouteBefore.jsx';
+import LoginForm from './components/LoginForm.jsx';
+import { getInfo, getUserById } from './api/user.js';
+import { useDispatch } from 'react-redux';
+import { changeLoginState, initUserInfo } from './redux/userSlice.js';
+import { message } from 'antd';
 
 const { Header, Footer, Content } = Layout;
 
@@ -35,11 +35,11 @@ const App = () => {
         dispatch(changeLoginState(true));
       } else {
         // token 无效
-        message.warning("登录状态失效，请重新登录");
-        localStorage.removeItem("userToken");
+        message.warning('登录状态失效，请重新登录');
+        localStorage.removeItem('userToken');
       }
     }
-    if (localStorage.getItem("userToken")) {
+    if (localStorage.getItem('userToken')) {
       fetchData();
     }
   }, []);
@@ -56,7 +56,10 @@ const App = () => {
         <Footer className="footer">
           <CopyrightFooter />
         </Footer>
-        <LoginForm isShow={isModalOpen} closeModal={closeModal} />
+        <LoginForm
+          isShow={isModalOpen}
+          closeModal={closeModal}
+        />
       </Layout>
     </div>
   );

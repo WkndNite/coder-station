@@ -1,8 +1,8 @@
-import request from "./request";
+import request from './request';
 
 export function getTypes() {
   return request({
-    url: "/api/type",
-    method: "GET",
+    url: '/api/type',
+    method: 'GET',
   });
 }

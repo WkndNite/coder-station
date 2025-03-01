@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { getUserByPointRank } from "../api/user";
-import { Card } from "antd";
-import ScoreItem from "./ScoreItem";
+import React, { useEffect, useState } from 'react';
+import { getUserByPointRank } from '../api/user';
+import { Card } from 'antd';
+import ScoreItem from './ScoreItem';
 
 export default function ScoreRank() {
   const [rankList, setRankList] = useState([]);
@@ -18,7 +18,11 @@ export default function ScoreRank() {
   if (rankList.length) {
     rankList.forEach((item, index) => {
       userPointRankArr.push(
-        <ScoreItem rankInfo={item} rank={index + 1} key={item._id} />,
+        <ScoreItem
+          rankInfo={item}
+          rank={index + 1}
+          key={item._id}
+        />,
       );
     });
   }

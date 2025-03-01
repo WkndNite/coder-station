@@ -1,22 +1,22 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { editUser } from "../api/user";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { editUser } from '../api/user';
 
 export const updateUserInfoAsync = createAsyncThunk(
-  "user/updateUserInfoAsync",
+  'user/updateUserInfoAsync',
   async (payload, thunkApi) => {
     console.log(payload);
     await editUser(payload.userId, payload.newInfo);
     thunkApi.dispatch(updateUserInfo(payload.newInfo));
-  }
+  },
 );
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
     isLogin: false,
     userInfo: {
       avatar:
-        "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+        'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
     },
   },
   reducers: {
@@ -29,11 +29,11 @@ export const userSlice = createSlice({
     clearUserInfo: (state) => {
       state.userInfo = {
         avatar:
-          "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+          'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
       };
     },
     updateUserInfo: (state, { payload }) => {
-      for(let key in payload) {
+      for (let key in payload) {
         state.userInfo[key] = payload[key];
       }
     },

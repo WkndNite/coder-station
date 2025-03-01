@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Modal, Radio, Form, Button, Row, Col, Input, Checkbox } from "antd";
-import styles from "../css/LoginForm.module.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { Modal, Radio, Form, Button, Row, Col, Input, Checkbox } from 'antd';
+import styles from '../css/LoginForm.module.css';
 import {
   getCaptcha,
   getUserById,
   login,
   register,
   userHasExist,
-} from "../api/user";
-import { message } from "antd";
-import { useDispatch } from "react-redux";
-import { changeLoginState, initUserInfo } from "../redux/userSlice";
+} from '../api/user';
+import { message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { changeLoginState, initUserInfo } from '../redux/userSlice';
 
 const LoginForm = (props) => {
   useEffect(() => {
@@ -22,20 +22,20 @@ const LoginForm = (props) => {
     setInfo({ ...info, [key]: value });
   };
 
-  const [value, setValue] = useState("login");
-  const [captcha, setCaptcha] = useState("");
+  const [value, setValue] = useState('login');
+  const [captcha, setCaptcha] = useState('');
   const loginFormRef = useRef(null);
   const [loginInfo, setLoginInfo] = useState({
-    loginId: "",
-    loginPwd: "",
-    captcha: "",
+    loginId: '',
+    loginPwd: '',
+    captcha: '',
     remember: false,
   });
   const registerFormRef = useRef(null);
   const [registerInfo, setRegisterInfo] = useState({
-    loginId: "",
-    nickname: "",
-    captcha: "",
+    loginId: '',
+    nickname: '',
+    captcha: '',
   });
 
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const LoginForm = (props) => {
   const checkLoginIdExists = async () => {
     if (registerInfo.loginId) {
       const res = await userHasExist(registerInfo.loginId);
-      return res.data ? Promise.reject("用户已存在") : Promise.resolve();
+      return res.data ? Promise.reject('用户已存在') : Promise.resolve();
     }
   };
 
@@ -54,14 +54,14 @@ const LoginForm = (props) => {
 
   function cancelHandler() {
     setRegisterInfo({
-      loginId: "",
-      nickname: "",
-      captcha: "",
+      loginId: '',
+      nickname: '',
+      captcha: '',
     });
     setLoginInfo({
-      loginId: "",
-      loginPwd: "",
-      captcha: "",
+      loginId: '',
+      loginPwd: '',
+      captcha: '',
       remember: false,
     });
     props.closeModal();
@@ -70,7 +70,7 @@ const LoginForm = (props) => {
   const registerHandler = async () => {
     const res = await register(registerInfo);
     if (res.data) {
-      message.success("用户注册成功，默认密码为123456，请尽快修改密码");
+      message.success('用户注册成功，默认密码为123456，请尽快修改密码');
       dispatch(initUserInfo(res.data));
       dispatch(changeLoginState(true));
       cancelHandler();
@@ -83,12 +83,12 @@ const LoginForm = (props) => {
     const res = await login(loginInfo);
     if (res.data) {
       if (!res.data.data) {
-        message.error("账号或密码不正确");
-      } else if (res.data.enabled===false) {
-        message.error("账号已被禁用");
+        message.error('账号或密码不正确');
+      } else if (res.data.enabled === false) {
+        message.error('账号已被禁用');
       } else {
-        message.success("登录成功");
-        localStorage.setItem("userToken", res.data.token);
+        message.success('登录成功');
+        localStorage.setItem('userToken', res.data.token);
         const userInfo = await getUserById(res.data.data._id);
         dispatch(initUserInfo(userInfo.data));
         dispatch(changeLoginState(true));
@@ -102,14 +102,14 @@ const LoginForm = (props) => {
 
   const resetHandler = () => {
     setRegisterInfo({
-      loginId: "",
-      nickname: "",
-      captcha: "",
+      loginId: '',
+      nickname: '',
+      captcha: '',
     });
     setLoginInfo({
-      loginId: "",
-      loginPwd: "",
-      captcha: "",
+      loginId: '',
+      loginPwd: '',
+      captcha: '',
       remember: false,
     });
   };
@@ -128,7 +128,7 @@ const LoginForm = (props) => {
         rules={[
           {
             required: true,
-            message: "请输入账号",
+            message: '请输入账号',
           },
         ]}
       >
@@ -136,7 +136,7 @@ const LoginForm = (props) => {
           placeholder="请输入账号"
           value={loginInfo.loginId}
           onChange={(e) =>
-            updateInfo(loginInfo, e.target.value, "loginId", setLoginInfo)
+            updateInfo(loginInfo, e.target.value, 'loginId', setLoginInfo)
           }
         />
       </Form.Item>
@@ -146,7 +146,7 @@ const LoginForm = (props) => {
         rules={[
           {
             required: true,
-            message: "请输入密码",
+            message: '请输入密码',
           },
         ]}
       >
@@ -155,7 +155,7 @@ const LoginForm = (props) => {
           autoComplete="off"
           value={loginInfo.loginPwd}
           onChange={(e) =>
-            updateInfo(loginInfo, e.target.value, "loginPwd", setLoginInfo)
+            updateInfo(loginInfo, e.target.value, 'loginPwd', setLoginInfo)
           }
         />
       </Form.Item>
@@ -165,7 +165,7 @@ const LoginForm = (props) => {
         rules={[
           {
             required: true,
-            message: "请输入验证码",
+            message: '请输入验证码',
           },
         ]}
       >
@@ -175,7 +175,7 @@ const LoginForm = (props) => {
               placeholder="请输入验证码"
               value={loginInfo.captcha}
               onChange={(e) =>
-                updateInfo(loginInfo, e.target.value, "captcha", setLoginInfo)
+                updateInfo(loginInfo, e.target.value, 'captcha', setLoginInfo)
               }
             />
           </Col>
@@ -198,7 +198,7 @@ const LoginForm = (props) => {
       >
         <Checkbox
           onChange={(e) =>
-            updateInfo(loginInfo, e.target.checked, "remember", setLoginInfo)
+            updateInfo(loginInfo, e.target.checked, 'remember', setLoginInfo)
           }
           checked={loginInfo.remember}
         >
@@ -212,10 +212,18 @@ const LoginForm = (props) => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit" style={{ marginRight: 20 }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ marginRight: 20 }}
+        >
           登录
         </Button>
-        <Button type="primary" htmlType="reset" onClick={() => resetHandler()}>
+        <Button
+          type="primary"
+          htmlType="reset"
+          onClick={() => resetHandler()}
+        >
           重置
         </Button>
       </Form.Item>
@@ -234,7 +242,7 @@ const LoginForm = (props) => {
         rules={[
           {
             required: true,
-            message: "请输入账号，仅此项为必填项",
+            message: '请输入账号，仅此项为必填项',
           },
           // 验证用户是否已经存在
           { validator: checkLoginIdExists },
@@ -245,12 +253,15 @@ const LoginForm = (props) => {
           placeholder="请输入账号"
           value={registerInfo.loginId}
           onChange={(e) =>
-            updateInfo(registerInfo, e.target.value, "loginId", setRegisterInfo)
+            updateInfo(registerInfo, e.target.value, 'loginId', setRegisterInfo)
           }
         />
       </Form.Item>
 
-      <Form.Item label="用户昵称" name="nickname">
+      <Form.Item
+        label="用户昵称"
+        name="nickname"
+      >
         <Input
           placeholder="请输入昵称，不填写默认为新用户xxx"
           value={registerInfo.nickname}
@@ -258,7 +269,7 @@ const LoginForm = (props) => {
             updateInfo(
               registerInfo,
               e.target.value,
-              "nickname",
+              'nickname',
               setRegisterInfo,
             )
           }
@@ -271,7 +282,7 @@ const LoginForm = (props) => {
         rules={[
           {
             required: true,
-            message: "请输入验证码",
+            message: '请输入验证码',
           },
         ]}
       >
@@ -284,7 +295,7 @@ const LoginForm = (props) => {
                 updateInfo(
                   registerInfo,
                   e.target.value,
-                  "captcha",
+                  'captcha',
                   setRegisterInfo,
                 )
               }
@@ -306,10 +317,18 @@ const LoginForm = (props) => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit" style={{ marginRight: 20 }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ marginRight: 20 }}
+        >
           注册
         </Button>
-        <Button type="primary" htmlType="reset" onClick={() => resetHandler()}>
+        <Button
+          type="primary"
+          htmlType="reset"
+          onClick={() => resetHandler()}
+        >
           重置
         </Button>
       </Form.Item>
@@ -333,18 +352,24 @@ const LoginForm = (props) => {
           className={styles.radioGroup}
           buttonStyle="solid"
           style={{
-            marginBottom: "20px",
+            marginBottom: '20px',
           }}
         >
-          <Radio.Button className={styles.radioButton} value="login">
+          <Radio.Button
+            className={styles.radioButton}
+            value="login"
+          >
             登录
           </Radio.Button>
-          <Radio.Button className={styles.radioButton} value="register">
+          <Radio.Button
+            className={styles.radioButton}
+            value="register"
+          >
             注册
           </Radio.Button>
         </Radio.Group>
         <div className="container">
-          {value === "login" ? loginContainer : registerContainer}
+          {value === 'login' ? loginContainer : registerContainer}
         </div>
       </Modal>
     </>

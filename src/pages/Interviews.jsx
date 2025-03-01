@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getInterviewTitleAsync } from "../redux/interviewSlice";
-import { getTypeList } from "../redux/typeSlice";
-import PageHeader from "../components/PageHeader";
-import styles from "../css/Interview.module.css";
-import { Tree ,BackTop} from "antd";
-import { getInterviewById } from "../api/interview";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInterviewTitleAsync } from '../redux/interviewSlice';
+import { getTypeList } from '../redux/typeSlice';
+import PageHeader from '../components/PageHeader';
+import styles from '../css/Interview.module.css';
+import { Tree, BackTop } from 'antd';
+import { getInterviewById } from '../api/interview';
 
 function Interviews(props) {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function Interviews(props) {
           title: (
             <h3
               style={{
-                fontWeight: "200",
+                fontWeight: '200',
               }}
             >
               {typeList[i].typeName}
@@ -50,7 +50,7 @@ function Interviews(props) {
             title: (
               <h4
                 style={{
-                  fontWeight: "200",
+                  fontWeight: '200',
                 }}
                 onClick={() => {
                   clickHandler(interviewTitleList[i][j]._id);
@@ -77,7 +77,7 @@ function Interviews(props) {
           {interviewInfo.interviewTitle}
         </h1>
         <div className={styles.contentContainer}>
-          {" "}
+          {' '}
           <div
             dangerouslySetInnerHTML={{ __html: interviewInfo.interviewContent }}
           ></div>
@@ -88,10 +88,10 @@ function Interviews(props) {
     interviewRightSide = (
       <div
         style={{
-          textAlign: "center",
-          marginTop: "150px",
-          fontSize: "40px",
-          fontWeight: "200",
+          textAlign: 'center',
+          marginTop: '150px',
+          fontSize: '40px',
+          fontWeight: '200',
         }}
       >
         请在左侧选择面试题

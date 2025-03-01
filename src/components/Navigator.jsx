@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Input, Select, Space } from "antd";
-import LoginAvatar from "./LoginAvatar";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Input, Select, Space } from 'antd';
+import LoginAvatar from './LoginAvatar';
+import { useNavigate } from 'react-router-dom';
 
 function Navigator(props) {
   const navigate = useNavigate();
-  const [searchOption, setSearchOption] = useState("issue");
+  const [searchOption, setSearchOption] = useState('issue');
 
   function onSearch(value) {
     if (value) {
-      navigate("/searchPage", {
+      navigate('/searchPage', {
         state: {
           value,
-          searchOption
+          searchOption,
         },
       });
     } else {
-      navigate("/");
+      navigate('/');
     }
   }
 
@@ -31,13 +31,22 @@ function Navigator(props) {
         <div className="logo"></div>
       </div>
       <nav className="navContainer">
-        <NavLink to="/" className="navigation">
+        <NavLink
+          to="/"
+          className="navigation"
+        >
           问答
         </NavLink>
-        <NavLink to="/books" className="navigation">
+        <NavLink
+          to="/books"
+          className="navigation"
+        >
           书籍
         </NavLink>
-        <NavLink to="/interviews" className="navigation">
+        <NavLink
+          to="/interviews"
+          className="navigation"
+        >
           面试题
         </NavLink>
         <a
@@ -54,7 +63,7 @@ function Navigator(props) {
           <Select
             defaultValue="issue"
             size="large"
-            style={{ width: "30%" }}
+            style={{ width: '30%' }}
             onChange={onChange}
           >
             <Select.Option value="issue">问答</Select.Option>
@@ -66,7 +75,7 @@ function Navigator(props) {
             enterButton="搜索"
             size="large"
             style={{
-              width: "80%",
+              width: '80%',
             }}
             onSearch={onSearch}
           />

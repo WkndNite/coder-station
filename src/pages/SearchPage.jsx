@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import styles from "../css/SearchPage.module.css";
-import PageHeader from "../components/PageHeader";
-import Recommend from "../components/Recommend";
-import ScoreRank from "../components/ScoreRank";
-import { getIssuesByPage } from "../api/issue";
-import SearchResultItem from "../components/SearchResultItem";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+import styles from '../css/SearchPage.module.css';
+import PageHeader from '../components/PageHeader';
+import Recommend from '../components/Recommend';
+import ScoreRank from '../components/ScoreRank';
+import { getIssuesByPage } from '../api/issue';
+import SearchResultItem from '../components/SearchResultItem';
 
 export default function SearchPage(props) {
   const location = useLocation();
@@ -26,12 +26,12 @@ export default function SearchPage(props) {
       };
 
       switch (searchOption) {
-        case "issue":
+        case 'issue':
           searchParams.issueTitle = value;
           const { data } = await getIssuesByPage(searchParams);
           setSearchResult(data.data);
           break;
-        case "book":
+        case 'book':
           searchParams.bookName = value;
           break;
         default:
@@ -49,14 +49,17 @@ export default function SearchPage(props) {
       <div className={styles.searchPageContainer}>
         <div className={styles.leftSide}>
           {searchResult.map((item) => (
-            <SearchResultItem info={item} key={item._id} />
+            <SearchResultItem
+              info={item}
+              key={item._id}
+            />
           ))}
         </div>
         <div className={styles.rightSide}>
-          {" "}
+          {' '}
           <div
             style={{
-              marginBottom: "20px",
+              marginBottom: '20px',
             }}
           >
             <Recommend />

@@ -1,16 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getInterviewTitle } from "../api/interview";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getInterviewTitle } from '../api/interview';
 
 export const getInterviewTitleAsync = createAsyncThunk(
-  "interview/getInterviewTitle",
+  'interview/getInterviewTitle',
   async (_, thunkApi) => {
     const { data } = await getInterviewTitle();
     thunkApi.dispatch(initInterviewTitleList(data));
-  }
+  },
 );
 
 export const interviewSlice = createSlice({
-  name: "interview",
+  name: 'interview',
   initialState: {
     interviewTitleList: [],
   },

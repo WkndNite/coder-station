@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styles from "../css/ScoreItem.module.css";
-import { Avatar } from "antd";
-import classNames from "classnames";
+import React, { useState } from 'react';
+import styles from '../css/ScoreItem.module.css';
+import { Avatar } from 'antd';
+import classNames from 'classnames';
 
 export default function ScoreItem({ rankInfo, rank }) {
   const [classNameCollection] = useState({
     iconfont: true,
-    "icon-jiangbei": true,
+    'icon-jiangbei': true,
   });
 
   switch (rank) {
@@ -14,8 +14,8 @@ export default function ScoreItem({ rankInfo, rank }) {
       rank = (
         <div
           style={{
-            color: "#ffda23",
-            fontSize: "22px",
+            color: '#ffda23',
+            fontSize: '22px',
           }}
           className={classNames(classNameCollection)}
         ></div>
@@ -25,8 +25,8 @@ export default function ScoreItem({ rankInfo, rank }) {
       rank = (
         <div
           style={{
-            color: "#c5c5c5",
-            fontSize: "22px",
+            color: '#c5c5c5',
+            fontSize: '22px',
           }}
           className={classNames(classNameCollection)}
         ></div>
@@ -36,8 +36,8 @@ export default function ScoreItem({ rankInfo, rank }) {
       rank = (
         <div
           style={{
-            color: "#cd9a62",
-            fontSize: "22px",
+            color: '#cd9a62',
+            fontSize: '22px',
           }}
           className={classNames(classNameCollection)}
         ></div>
@@ -53,7 +53,10 @@ export default function ScoreItem({ rankInfo, rank }) {
       <div className={styles.left}>
         {rank}
         <div className={styles.avatar}>
-          <Avatar size="small" src={rankInfo.avatar} />
+          <Avatar
+            size="small"
+            src={rankInfo.avatar}
+          />
         </div>
         <div className={styles.nickname}>{rankInfo.nickname}</div>
       </div>

@@ -9,13 +9,13 @@ body {
 }
 
 @font-face {
-  font-family: "iconfont";
+  font-family: 'iconfont';
   /* Project id  */
-  src: url("./fonts/iconfont.ttf?t=1666762429301") format("truetype");
+  src: url('./fonts/iconfont.ttf?t=1666762429301') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont", sans-serif !important;
+  font-family: 'iconfont', sans-serif !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -23,5 +23,5 @@ body {
 }
 
 .icon-jiangbei:before {
-  content: "\e660";
+  content: '\e660';
 }
