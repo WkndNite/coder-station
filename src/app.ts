@@ -8,7 +8,7 @@ export async function getInitialState(): Promise<{ name: string }> {
 
 export const layout = () => {
   return {
-    logo: 'https://lowcode.maozi.io/favicon.svg',
+    logo: 'https://cdn-icons-png.flaticon.com/128/1437/1437111.png',
     menu: {
       locale: false,
     },

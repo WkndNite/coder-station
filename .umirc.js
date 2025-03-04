@@ -51,7 +51,13 @@ export default defineConfig({
         {
           name: '添加用户',
           path: 'addUser',
-          component: './User/add',
+          component: './User/addUser',
+        },
+        {
+          name: '修改用户',
+          path: 'editUser/:id',
+          component: './User/editUser',
+          hideInMenu: true,
         },
       ],
     },
@@ -68,7 +74,13 @@ export default defineConfig({
         {
           name: '添加书籍',
           path: 'addBook',
-          component: './Book/add',
+          component: './Book/addBook',
+        },
+        {
+          name: '修改书籍',
+          path: 'editBook/:id',
+          component: './Book/editBook',
+          hideInMenu: true,
         },
       ],
     },
