@@ -1,5 +1,5 @@
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { useDispatch, useSelector } from '@umijs/max';
+import { useDispatch, useModel, useSelector } from '@umijs/max';
 import { Button, message, Modal, Popconfirm, Switch, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import AdminForm from './components/adminForm';
@@ -29,7 +29,7 @@ function AdminList() {
     });
     message.success('删除成功');
   };
-
+  const { initialState } = useModel('@@initialState');
   const columns = [
     {
       title: '登录账号',
@@ -82,11 +82,14 @@ function AdminList() {
       },
     },
     {
-      title: '账号操作',
+      title: '账号状态',
       dataIndex: 'enabled',
       key: 'enabled',
       align: 'center',
       render: (_, row) => {
+        if (row._id === initialState.adminInfo._id) {
+          return <Tag color="green">当前登录用户</Tag>;
+        }
         return (
           <Switch
             key={row._id}

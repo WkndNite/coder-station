@@ -1,6 +1,6 @@
 import UserController from '@/services/user';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { useNavigate } from '@umijs/max';
+import { Access, useAccess, useNavigate } from '@umijs/max';
 import { Button, message, Popconfirm, Switch } from 'antd';
 import { useRef, useState } from 'react';
 
@@ -16,6 +16,7 @@ function UserList() {
       pageSize,
     });
   }
+  const access = useAccess();
 
   const columns = [
     {
@@ -95,17 +96,20 @@ function UserList() {
           >
             编辑
           </Button>
-          <Popconfirm
-            title="确定删除吗？"
-            onConfirm={() => deleteHandle(row._id)}
-          >
-            <Button
-              type="link"
-              size="small"
+
+          <Access accessible={access.SuperAdmin}>
+            <Popconfirm
+              title="确定删除吗？"
+              onConfirm={() => deleteHandle(row._id)}
             >
-              删除
-            </Button>
-          </Popconfirm>
+              <Button
+                type="link"
+                size="small"
+              >
+                删除
+              </Button>
+            </Popconfirm>
+          </Access>
         </div>
       ),
     },

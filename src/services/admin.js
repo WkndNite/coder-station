@@ -32,10 +32,39 @@ function adminIsExist(loginId) {
   });
 }
 
+function getCaptcha() {
+  return request('/res/captcha', {
+    method: 'GET',
+  });
+}
+
+function login(loginInfo) {
+  return request('/api/admin/login', {
+    method: 'POST',
+    data: loginInfo,
+  });
+}
+
+function getInfo() {
+  return request('/api/admin/whoami', {
+    method: 'GET',
+  });
+}
+
+function getAdminById(adminId) {
+  return request(`/api/admin/${adminId}`, {
+    method: 'GET',
+  });
+}
+
 export default {
   getAdmins,
   deleteAdmin,
   updateAdmin,
   addAdmin,
   adminIsExist,
+  getCaptcha,
+  login,
+  getInfo,
+  getAdminById,
 };
