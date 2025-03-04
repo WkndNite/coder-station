@@ -9,6 +9,7 @@ export default defineConfig({
   layout: {
     title: 'coderstation',
   },
+  dva: {},
   routes: [
     {
       path: '/',
@@ -33,7 +34,7 @@ export default defineConfig({
         {
           name: '添加管理员',
           path: 'addAdmin',
-          component: './Admin/add',
+          component: './Admin/addAdmin',
         },
       ],
     },
@@ -96,5 +97,19 @@ export default defineConfig({
       component: './Type',
     },
   ],
+  proxy: {
+    '/api': {
+      target: 'http://localhost:7001',
+      changeOrigin: true,
+    },
+    '/static': {
+      target: 'http://localhost:7001',
+      changeOrigin: true,
+    },
+    '/res': {
+      target: 'http://localhost:7001',
+      changeOrigin: true,
+    },
+  },
   npmClient: 'pnpm',
 });

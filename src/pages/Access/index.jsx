@@ -2,7 +2,7 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Access, useAccess } from '@umijs/max';
 import { Button } from 'antd';
 
-const AccessPage = () => {
+function AccessPage() {
   const access = useAccess();
   return (
     <PageContainer
@@ -16,6 +16,6 @@ const AccessPage = () => {
       </Access>
     </PageContainer>
   );
-};
+}
 
 export default AccessPage;
