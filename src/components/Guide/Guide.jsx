@@ -7,7 +7,10 @@ const Guide = (props) => {
   return (
     <Layout>
       <Row>
-        <Typography.Title level={3} className={styles.title}>
+        <Typography.Title
+          level={3}
+          className={styles.title}
+        >
           欢迎使用 <strong>{name}</strong> ！
         </Typography.Title>
       </Row>

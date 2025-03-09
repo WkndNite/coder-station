@@ -33,7 +33,7 @@ export default defineConfig({
       path: '/admin',
       icon: 'crown',
       access: 'SuperAdmin',
-
+      hideInBreadcrumb: true,
       routes: [
         {
           name: '管理员列表',
@@ -54,7 +54,7 @@ export default defineConfig({
       path: '/user',
       icon: 'user',
       access: 'NormalAdmin',
-
+      hideInBreadcrumb: true,
       routes: [
         {
           name: '用户列表',
@@ -82,7 +82,7 @@ export default defineConfig({
       path: '/book',
       icon: 'book',
       access: 'NormalAdmin',
-
+      hideInBreadcrumb: true,
       routes: [
         {
           name: '书籍列表',
@@ -113,6 +113,13 @@ export default defineConfig({
       access: 'NormalAdmin',
     },
     {
+      name: ' 问答详情',
+      path: '/issue/:id',
+      component: './Issue/issueDetail',
+      access: 'NormalAdmin',
+      hideInMenu: true,
+    },
+    {
       name: '评论',
       path: '/comment',
       icon: 'message',
@@ -122,9 +129,37 @@ export default defineConfig({
     {
       name: '面试题',
       path: '/interview',
-      icon: 'edit',
-      component: './Interview',
       access: 'NormalAdmin',
+      icon: 'EditOutlined',
+      hideInBreadcrumb: true,
+      routes: [
+        {
+          path: 'interviewList',
+          name: '题目列表',
+          access: 'NormalAdmin',
+          component: './Interview',
+        },
+        {
+          path: 'addInterview',
+          name: '添加题目',
+          access: 'NormalAdmin',
+          component: './Interview/addInterview',
+        },
+        {
+          path: 'interviewList/:id',
+          name: '题目详情',
+          access: 'NormalAdmin',
+          component: './Interview/interviewDetail',
+          hideInMenu: true,
+        },
+        {
+          path: 'editInterview/:id',
+          name: '编辑题目',
+          access: 'NormalAdmin',
+          component: './Interview/editInterview',
+          hideInMenu: true,
+        },
+      ],
     },
     {
       name: '类型',
@@ -132,6 +167,12 @@ export default defineConfig({
       icon: 'profile',
       component: './Type',
       access: 'NormalAdmin',
+    },
+    {
+      name: '404',
+      component: './404',
+      hideInMenu: true,
+      path: '*',
     },
   ],
   proxy: {

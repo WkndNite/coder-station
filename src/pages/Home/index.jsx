@@ -1,36 +1,33 @@
-import { Line } from '@ant-design/charts';
-const data = [
-  {
-    Date: '2021-01-01',
-    scales: 0.1,
-  },
-  {
-    Date: '2021-01-02',
-    scales: 0.33,
-  },
-  {
-    Date: '2021-01-03',
-    scales: 0.6,
-  },
-  {
-    Date: '2021-01-04',
-    scales: 2.1,
-  },
-];
+import styles from './index.module.css';
 
-const config = {
-  data,
-  padding: 'auto',
-  xField: 'Date',
-  yField: 'scales',
-  xAxis: {
-    // type: 'time',
-    tickCount: 5,
-  },
-  smooth: true,
-};
-const HomePage = () => {
-  return <Line {...config} />;
-};
+import DemoBar from './Charts/DemoBar';
+import DemoColumn from './Charts/DemoColumn';
+import DemoPie from './Charts/DemoPie';
+
+function HomePage() {
+  return (
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.left}>
+          <DemoPie />
+        </div>
+        <div className={styles.middle}>
+          <DemoBar />
+        </div>
+        <div className={styles.right}>
+          <DemoPie />
+        </div>
+      </div>
+      <div className={styles.wrapper}>
+        <div className={styles.left}>
+          <DemoBar />
+        </div>
+        <div className={styles.right}>
+          <DemoColumn />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default HomePage;
