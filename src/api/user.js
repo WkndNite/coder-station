@@ -59,3 +59,11 @@ export function editUser(userId, newUserInfo) {
     data: newUserInfo,
   });
 }
+
+export function passwordCheck(userId, loginPwd) {
+  return request({
+    url: `/api/user/passwordcheck`,
+    method: 'POST',
+    data: { userId, loginPwd },
+  });
+}

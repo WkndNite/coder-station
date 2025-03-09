@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTypeList, updateIssueTypeId } from '../redux/typeSlice';
+import {
+  getTypeList,
+  updateIssueTypeId,
+  updateBookTypeId,
+} from '../redux/typeSlice';
 import { Tag } from 'antd';
 
 export default function TypeSelect() {
@@ -22,12 +26,14 @@ export default function TypeSelect() {
     if (location.pathname === '/issues') {
       dispatch(updateIssueTypeId(id));
     } else if (location.pathname === '/books') {
+      dispatch(updateBookTypeId(id));
     }
   };
 
   useEffect(() => {
     if (!typeList.length) {
-      dispatch(getTypeList);
+      console.log('get type list');
+      dispatch(getTypeList());
     } else {
       const arr = [];
       arr.push(

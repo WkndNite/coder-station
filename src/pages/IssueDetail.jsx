@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getIssueById } from '../api/issue';
+import { getIssueById, updateIssue } from '../api/issue';
 import styles from '../css/IssueDetail.module.css';
 import PageHeader from '../components/PageHeader';
 import Recommend from '../components/Recommend';
@@ -21,6 +21,9 @@ export default function IssueDetail() {
       setIssueInfo(data);
       const userInfo = await getUserById(data.userId);
       setIssueUser(userInfo.data);
+      updateIssue(data._id, {
+        scanNumber: data.scanNumber + 1,
+      });
     }
     fetchIssueData();
   }, [issueId]);

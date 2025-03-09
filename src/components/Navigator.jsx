@@ -17,7 +17,11 @@ function Navigator(props) {
         },
       });
     } else {
-      navigate('/');
+      if (searchOption === 'issue') {
+        navigate('/');
+      } else {
+        navigate('/books');
+      }
     }
   }
 

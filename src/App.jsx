@@ -28,6 +28,7 @@ const App = () => {
     async function fetchData() {
       // 传递 token 获取 id 恢复登陆状态
       const res = await getInfo();
+
       if (res.data) {
         // token 有效
         const { data } = await getUserById(res.data._id);

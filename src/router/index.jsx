@@ -7,6 +7,8 @@ import AddIssue from '../pages/AddIssue';
 import IssueDetail from '../pages/IssueDetail';
 import SearchPage from '../pages/SearchPage';
 import Personal from '../pages/Personal';
+import NotFound from '../pages/NotFound';
+import BookDetail from '../pages/BookDetail';
 
 function RouteConfig() {
   return (
@@ -41,12 +43,20 @@ function RouteConfig() {
         element={<IssueDetail />}
       />
       <Route
+        path="/books/:bookId"
+        element={<BookDetail />}
+      />
+      <Route
         path="/searchPage"
         element={<SearchPage />}
       />
       <Route
         path="/personal"
         element={<Personal />}
+      />
+      <Route
+        path="*"
+        element={<NotFound />}
       />
     </Routes>
   );

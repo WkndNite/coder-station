@@ -12,7 +12,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
 import { Editor } from '@toast-ui/react-editor';
-import { addIssueComment, getIssueCommentsById } from '../api/comment';
+import {
+  addIssueComment,
+  getBookCommentById,
+  getIssueCommentsById,
+} from '../api/comment';
 import { getUserById } from '../api/user';
 import { formatDate } from '../utils/tools';
 import { updateIssue } from '../api/issue';
@@ -43,8 +47,12 @@ export default function Discuss(props) {
         newComment = '';
       }
     } else if (props.commentType === 2) {
+      newComment = editorRef.current.getInstance().getHTML();
+      if (newComment === '<p><br></p>') {
+        newComment = '';
+      }
     }
-
+    console.log(newComment);
     if (!newComment) {
       message.warning('评论内容不能为空');
       return;
@@ -55,8 +63,8 @@ export default function Discuss(props) {
       typeId: props.issueInfo ? props.issueInfo.typeId : props.bookInfo.typeId,
       commentContent: newComment,
       commentType: props.commentType,
-      bookId: null,
-      issueId: props.targetId,
+      bookId: props.bookInfo ? props.targetId : null,
+      issueId: props.issueInfo ? props.targetId : null,
     });
     setRefresh(!refresh);
     editorRef.current.getInstance().setHTML('');
@@ -89,6 +97,11 @@ export default function Discuss(props) {
         });
         data = result.data;
       } else if (props.commentType === 2) {
+        const result = await getBookCommentById(props.targetId, {
+          current: 1,
+          pageSize: 10,
+        });
+        data = result.data;
       }
       const updatedComments = await Promise.all(
         data.data.map(async (item) => {

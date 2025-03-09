@@ -6,6 +6,8 @@ import Recommend from '../components/Recommend';
 import ScoreRank from '../components/ScoreRank';
 import { getIssuesByPage } from '../api/issue';
 import SearchResultItem from '../components/SearchResultItem';
+import { getBookByPage } from '../api/book';
+import { Pagination } from 'antd';
 
 export default function SearchPage(props) {
   const location = useLocation();
@@ -15,7 +17,12 @@ export default function SearchPage(props) {
     pageSize: 10,
     total: 0,
   });
-
+  function handlePageChange(current, pageSize) {
+    setPageInfo({
+      current,
+      pageSize,
+    });
+  }
   useEffect(() => {
     async function fetchData(state) {
       const { value, searchOption } = state;
@@ -26,14 +33,28 @@ export default function SearchPage(props) {
       };
 
       switch (searchOption) {
-        case 'issue':
+        case 'issue': {
           searchParams.issueTitle = value;
           const { data } = await getIssuesByPage(searchParams);
+          setPageInfo({
+            current: data.currentPage,
+            pageSize: data.eachPage,
+            total: data.count,
+          });
           setSearchResult(data.data);
           break;
-        case 'book':
-          searchParams.bookName = value;
+        }
+        case 'book': {
+          searchParams.bookTitle = value;
+          const { data } = await getBookByPage(searchParams);
+          setPageInfo({
+            current: data.currentPage,
+            pageSize: data.eachPage,
+            total: data.count,
+          });
+          setSearchResult(data.data);
           break;
+        }
         default:
           break;
       }
@@ -54,6 +75,18 @@ export default function SearchPage(props) {
               key={item._id}
             />
           ))}
+          {searchResult.length > 0 ? (
+            <div className="paginationContainer">
+              <Pagination
+                showQuickJumper
+                defaultCurrent={1}
+                {...pageInfo}
+                onChange={handlePageChange}
+              />
+            </div>
+          ) : (
+            <div className={styles.noResult}>未搜索到符合条件的条目</div>
+          )}
         </div>
         <div className={styles.rightSide}>
           {' '}

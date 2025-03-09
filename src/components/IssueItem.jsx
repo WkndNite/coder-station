@@ -64,7 +64,7 @@ export default function IssueItem(props) {
             </Tag>
           </div>
           <div className={styles.right}>
-            <Tag color="volcano">{userInfo.nickname}</Tag>
+            <Tag color="volcano">{userInfo?.nickname}</Tag>
             <span>{formatDate(props.issueInfo.issueDate, 'year')}</span>
           </div>
         </div>

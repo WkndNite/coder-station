@@ -17,3 +17,11 @@ export function addIssueComment(newComment) {
     data: newComment,
   });
 }
+export function getBookCommentById(id, params) {
+  return request(`/api/comment/bookcomment/${id}`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+  });
+}

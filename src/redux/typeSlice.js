@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getTypes } from '../api/type';
 
 export const getTypeList = createAsyncThunk('type/getTypeList', async () => {
-  const response = await getTypes();
-  return response.data;
+  const { data } = await getTypes();
+  console.log(data);
+  return data;
 });
 
 export const typeSlice = createSlice({
@@ -14,8 +15,14 @@ export const typeSlice = createSlice({
     bookTypeId: 'all',
   },
   reducers: {
+    initTypeList(state, { payload }) {
+      state.typeList = payload;
+    },
     updateIssueTypeId(state, { payload }) {
       state.issueTypeId = payload;
+    },
+    updateBookTypeId(state, { payload }) {
+      state.bookTypeId = payload;
     },
   },
   extraReducers: (builder) => {
@@ -26,4 +33,4 @@ export const typeSlice = createSlice({
 });
 
 export default typeSlice.reducer;
-export const { updateIssueTypeId } = typeSlice.actions;
+export const { updateIssueTypeId, updateBookTypeId } = typeSlice.actions;
